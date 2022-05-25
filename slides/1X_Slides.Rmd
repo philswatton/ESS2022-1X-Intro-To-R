@@ -1,0 +1,127 @@
+---
+title: "1X: Introduction to R"
+subtitle: "Essex Summer School for Social Science Data Analysis"
+author: "Phil Swatton"
+date: "10/07/2022"
+output: 
+    beamer_presentation:
+        theme: metropolis
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+# Introduction
+
+Welcome to 1X Intro to R!
+
+I'm Phil, a PhD student in the Department of Government at the University of Essex.
+
+Today, we'll be learning how to use R (but you knew that already).
+
+
+
+
+# Today's session
+
+- Getting you ready to use R in the wild
+- Some statistical knowledge helpful but not necessary
+- Plenty of code that you can refer back to
+- Some good coding practices
+- Assuming no previous experience with R
+
+
+
+
+# Class structure
+
+1. Using RStudio, data types, data structures
+2. Importing datasets, manipulating data
+3. Descriptive statistics, plots
+4. Statistical tests and models
+
+Each section will be roughly an hour to an hour and a half long. Each section will include a set of exercises so you can practice what we've learned.
+
+I'm not necessarily expecting you to finish the exercises today - it's okay if you don't! I will be uploading a solutions sheet to the Box folder later and as before will be available for contact throughout the second session of ESS.
+
+
+
+
+
+
+# What is R? What is RStudio?
+
+- R is:
+    - Both a program and a programming language
+    - Excellent for statistics & data analysis
+    - Open source
+- RStudio is:
+    - An IDE (Integrated Development Environment)
+    - Purpose-built for writing R code
+    - Also open source
+    - Let's take a look...
+
+
+
+
+
+# Some useful resources
+
+- [Google](https://www.google.com/) (no joke)
+- [RStudio Learn](https://education.rstudio.com/learn/)
+- [R for Data Science](https://r4ds.had.co.nz/)
+- [R bloggers](https://www.r-bloggers.com/)
+- [RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
+
+
+
+
+# Some R package reccomendations
+
+
+\begin{center}
+\resizebox{10cm}{!}{
+\begin{tabular}{lll}
+\textbf{Type} 		& \textbf{Package name} 	& \textbf{Aim} \\
+Data import			& \texttt{haven} 	& Similar to \texttt{foreign}\\
+					& \texttt{readr}	& For reading in rectangular data files (e.g. CSV), part of the \texttt{tidyverse} \\
+\hline
+Data cleaning 		& \texttt{tidyr} 	& Tidy datasets incl. reshaping to long and wide, part of the \texttt{tidyverse} \\
+\hline
+Plots 				& \texttt{ggpubr} 	& \texttt{ggplot2}-based publication-ready plots \\
+\hline
+Standard errors		& \texttt{sandwich} + \texttt{lmtest}  & Robust and clustered standard errors + test coefficients \\
+\hline
+Modelling			& \texttt{plm} 		& Panel data models (within-between estimator) \\
+					& \texttt{margins} or \texttt{ggeffects}& Marginal effects from models \\
+					& \texttt{AER} 		& Various (Instrumental variable, tobit models) \\ 
+					& \texttt{mlogit} or \texttt{mnlogit}	& Multinomial logit models \\
+					& \texttt{lme4} 	& Multilevel models \\
+					& \texttt{rdd} 		& Regression discontinuity design \\
+					& \texttt{zoo} or \texttt{forecast} & Time series tools \\
+\hline
+Latent Variable     & \texttt{psych}    & Exploratory Factor Analysis \\
+					& \texttt{lavaan}   & CFA/SEM \\
+\hline
+Webscraping			& \texttt{rvest}    & Webscraping \\
+					& \texttt{httr}     & Webscraping, APIs \\
+					& \texttt{RSelenium} & Scraping dynamic websites \\
+\hline
+Text Analysis       & \texttt{quanteda}  & Quantitative text analysis \\
+\end{tabular}
+}
+\end{center}
+
+
+
+# Questions before we finish?
+
+
+
+
+
+
+
