@@ -132,7 +132,7 @@ library(readstata13)
 
 # Now, we'll use the read.dta13 function from readstata13 to load in the CHES
 # dataset:
-ches <- read.dta13("data/CHES2019V3.dta")
+ches <- read.dta13("data/1999-2019_CHES_dataset_means(v3).dta")
 
 
 # Some other packages you'll want installed are the foreign and readxl packages:
@@ -201,38 +201,47 @@ names(ches)
 # documentation!
 
 # If we wanted to keep a select of variables, we might do it like so in base R:
-ches[,c("party", "lrecon", "eu_position", "galtan")]
+ches[,c("party", "year", "lrecon", "eu_position", "galtan")]
 
 # Alternatively, we can use the dplyr select function:
-select(ches, party, lrecon, eu_position, galtan)
+select(ches, party, year, lrecon, eu_position, galtan)
 
 
 
 
-## 2.3 Both ----
+## 2.3 select & filter, pipes ----
 
 # If we wanted to keep those variables for the GB parties, we could do the
 # following in base R: 
-ches[ches$country == 11, c("party", "lrecon", "eu_position", "galtan")]
+ches[ches$country == 11, c("party", "year", "lrecon", "eu_position", "galtan")]
 
 
 # In the tidyverse, we could wrap our functions...
-select(filter(ches, country == 11), party, lrecon, eu_position, galtan)
+select(filter(ches, country == 11), party, year, lrecon, eu_position, galtan)
 
 # But the tidyverse includes a VERY useful operator called the 'pipe'. This takes
 # the output of your function, and puts it in the FIRST SLOT of the next function:
 
 ches %>%
   filter(country == 11) %>%
-  select(party, lrecon, eu_position, galtan)
+  select(party, year, lrecon, eu_position, galtan)
 
 # This code doesn't run ANY differently to the above, but it's much easier for a
 # human to read.
+
+# As of R version 4.1, there is now a base R pipe which doesn't need the tidyverse:
+ches |>
+  filter(country == 11) |>
+  select(party, year, lrecon, eu_position, galtan)
+
+# In general, I'd recommend that unless you have a particular use case, you use this
+# one.
+
 # To assign the final output:
 
-chesGB <- ches %>%
-  filter(country == 11) %>%
-  select(party, lrecon, eu_position, galtan)
+chesGB <- ches |>
+  filter(country == 11) |>
+  select(party, year, lrecon, eu_position, galtan)
 chesGB
 
 # You don't have to use the pipe - but it's very, very nice for combining dplyr
@@ -251,7 +260,7 @@ chesGB
 chesGB$lrSquare <- chesGB$lrecon^2
 
 # In the tidyverse, we can use the 'mutate' function:
-chesGB <- chesGB %>%
+chesGB <- chesGB |>
   mutate(euSquare = eu_position^2,
          galtanSquare = galtan^2,
          sumSquare = lrSquare + euSquare + galtanSquare)
@@ -302,7 +311,7 @@ ifelse(aoe$rating > 2000, yes = 2,
 # the documentation is a little unintuitive, but here's how it works:
 case_when(aoe$rating > 2000 ~ 2,
           aoe$rating > 1000 ~ 1,
-          !is.na(aoe$rating) ~ 0) #notice we need to be explicit about dealing with missing values here
+          !is.na(aoe$rating) ~ 0) #notice we need to be clever about dealing with missing values here
 
 # we can mix it with mutate() to make it even easier to read and write:
 aoe %>%
@@ -319,16 +328,28 @@ aoe %>%
 
 ## 2.6 Renaming ----
 
-# Base R
+# Base R and tidyverse renaming work in fairly different ways.
+# With base R, you assign the name to the subset of the names
+# vector:
+
+names(ches)
+names(ches)[2]
+names(ches)[names(ches) == "party"]
+
+# To rename, select the part of names() you want to change and assign to it:
 names(ches)[2] <- "EastWest"
 names(ches)[names(ches) == "party"] <- "Party"
 
+# Result:
+names(ches)
+names(ches)[2]
 
-# Tidyverse
-ches <- ches %>%
+
+# In the tidyverse, a rename() function is included:
+ches <- ches |>
   rename(GalTan = galtan)
 
-names(ches)
+names(ches)[36]
 
 
 

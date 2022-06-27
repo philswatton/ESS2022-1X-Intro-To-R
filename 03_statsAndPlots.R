@@ -15,7 +15,7 @@ rm(list=ls())
 # data frames I made from the raw data. NONE of the raw data has been
 # overwritten!
 
-# To do this, click on Session -> Restart R
+# To restart your R session, click on Session -> Restart R
 
 # Once this two things are done, go ahead and load the packages:
 
@@ -29,7 +29,7 @@ library(psych)
 
 ## Data
 aoe <- read.csv("data/match_players.csv")
-ches <- read.dta13("data/CHES2019V3.dta")
+ches <- read.dta13("data/1999-2019_CHES_dataset_means(v3).dta")
 
 
 
@@ -83,19 +83,21 @@ prop.table(table(aoe$civ)) # note that prop.table takes a table as input
 
 ## 1.2 Covariance and correlation matrices ----
 ches %>% 
-  select(lrecon, eu_position, galtan) %>%
+  select(lrecon, eu_position, galtan) |>
   cor()
 
 ches %>% 
-  select(lrecon, eu_position, galtan) %>%
+  select(lrecon, eu_position, galtan) |>
   cov()
 
 # note cor uses Pearson's correlation by default:
 ?cor
 
 # if you have missing data, you want to set the argument use="complete.obs" to
-# filter for missing data:
-cor(aoe$rating, as.numeric(as.logical(toupper(aoe$winner))), use="complete.obs")
+# filter for missing data via casewise deletion:
+ches %>% 
+  select(lrecon, eu_position, galtan) |>
+  cor(use="complete.obs")
 
 
 
@@ -118,7 +120,7 @@ aoe %>%
 
 # we might want to combine filtering from file 02 with these functions:
 describe(aoe[aoe$civ == "Franks",])
-describe(aoe %>% filter(civ == "Franks"))
+describe(aoe |> filter(civ == "Franks"))
 
 # there's a lot of room to customise the output:
 describe(aoe, skew = FALSE, IQR = TRUE, ranges = FALSE)
@@ -134,7 +136,7 @@ class(test)
 ches %>%
   filter(country == 11 | country == 3 | country == 6) %>%
   select(country, lrecon, eu_position) %>%
-  describeBy(., .$country) #if you want to pipe into more than one slot or a slot other than the first, use the full stop
+  describeBy(., .$country) #if you want to pipe into more than one slot or a slot other than the first, use the full stop - this is specific to %>%
 
 # But the %in% operator can be VERY useful for larger OR expressions:
 ches %>%
@@ -275,7 +277,7 @@ ggplot(ches, aes(x = lrecon)) +
 # the relationship between how left-wing a party is and its EU position. Let's
 # focus on the case of the UK to begin with:
 
-chesUK <- ches %>% filter(country == 11)
+chesUK <- ches |> filter(country == 11)
 
 # To make a scatter plot in base R:
 plot(x = chesUK$lrecon, y = chesUK$eu_position,
@@ -306,7 +308,7 @@ dev.off() # this closes and saves the pdf file.
 
 # The basic plot
 ggplot(chesUK, aes(x=lrecon, y=eu_position)) +
-  geom_point() 
+  geom_point()
 
 # Bells and whistles:
 ggplot(chesUK, aes(x=lrecon, y=eu_position, fill=party)) +

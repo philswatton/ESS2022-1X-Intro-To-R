@@ -83,8 +83,6 @@ NA # missing data - the most important for today's purposes
 NaN # not a number - will only happen if something has gone wrong!
 NULL # basically an undefined value - there's nothing there (not even missing data!)
 
-NA + 2
-
 
 
 # 2 Creating and assigning objects ----
@@ -101,7 +99,7 @@ NA + 2
 
 a <- 2
 
-# The above code assigns the value of '2' to an object called a
+# The above code assigns the value of 2 to an object called a
 # Notice that a is now in our *global environment* in the top-right part of 
 # RStudio (unless you've changed your settings)
 
@@ -154,7 +152,7 @@ sqrt(4)
 
 ?sqrt
 
-# As you can see, this opens the function's documentation inthe *help* pane
+# As you can see, this opens the function's documentation in the *help* pane
 # in the bottom-right of RStudio. These documents can be a little daunting sometimes,
 # but you'll get used to them. The most important parts are:
 
@@ -191,10 +189,10 @@ log(2, 10)
 
 
 # Notice also that we can 'chain' functions together:
-log(sqrt(4), 10)# gives exactly the same as the above as sqrt(4) = 2
+log(sqrt(4), 10) # gives exactly the same as log(2, 10) above as sqrt(4) = 2
 
 # The evaluation order for R is inside to outside. In other words, R will
-# evaluate the function on the inside, and not the one on the outside.
+# evaluate the function on the inside first, and the one on the outside second.
 
 
 
@@ -213,7 +211,7 @@ paste("This", "is", "a", "full", "sentence")
 
 # Notice the "..." in the arguments. This means we can give it as many inputs as
 # we want, BUT we'll need to *explicity* name any further arguments:
-paste("This", "is", "a", "full", "sentence", sep=" ")
+paste("This", "is", "a", "full", "sentence", sep="-")
 
 
 
@@ -338,7 +336,7 @@ vec4[1]
 
 # BUT: the longer vector needs to be a multiple of the shorter vector for
 # this to work:
-1:10 + 1:3 #won't work because 10 isn't a multiple of 3
+1:10 + 1:3 # Gives a warning because 10 isn't a multiple of 3 - this is usually bad!
 
 
 
