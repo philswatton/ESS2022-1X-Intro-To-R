@@ -12,8 +12,8 @@ t.test(books$Price[books$Genre == "Non Fiction"],
        books$Price[books$Genre == "Fiction"])
 
 # Tidyverse:
-t.test(books %>% filter(Genre == "Non Fiction") %>% select(Price),
-       books %>% filter(Genre == "Fiction") %>% select(Price))
+t.test(books |> filter(Genre == "Non Fiction") |> select(Price),
+       books |> filter(Genre == "Fiction") |> select(Price))
 
 
 # 3) Read in the simpsons_episodes.csv file from the data folder and store

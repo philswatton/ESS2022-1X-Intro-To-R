@@ -19,15 +19,15 @@ case_when(simpsons$imdb_rating > 8 ~ 1,
 # number, title, and view number. Try to do it with both base R and the tidyverse.
 # Store the output in a new object.
 simpsons10 <- simpsons[simpsons$season <= 10, c("imdb_rating", "id", "season", "title", "views")]
-simpsons10 <- simpsons %>%
-  filter(season <= 10) %>%
+simpsons10 <- simpsons |>
+  filter(season <= 10) |>
   select(imdb_rating, id, season, title, views)
 
 
 # 4) In this object, create a new variable showing the rating per views. Try doing
 # this with both base R and the tidyverse.
 simpsons10$ratingPerViews <- simpsons10$imdb_rating / simpsons10$views
-simpsons10 <- simpsons10 %>%
+simpsons10 <- simpsons10 |>
   mutate(ratingPerViews = imdb_rating / views)
 
 

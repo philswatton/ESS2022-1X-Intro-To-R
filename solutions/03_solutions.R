@@ -14,7 +14,7 @@ describeBy(ches[ches$country == 3,]$redistribution, group=ches[ches$country == 3
 
 # Tidyverse:
 ches %>%
-  filter(country == 3) %>%
+  filter(country == 3) |>
   select(redistribution, party) %>%
   describeBy(., .$party)
 
