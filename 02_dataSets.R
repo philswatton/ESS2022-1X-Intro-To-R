@@ -35,7 +35,7 @@ rm(list = ls())
 # directory*. This is basically a location in your files that R will try and
 # read files from and will save files to:
 
-setwd("C:/Users/User/OneDrive/Documents/ESS/2021/2X") #this is the file path where I have the course files - you'd need to fill in your own
+setwd("C:/Users/User/Documents/Projects/ESS2022-1X-Intro-To-R") #this is the file path where I have the course files - you'd need to fill in your own
 
 
 # you can view your current working director with getwd():

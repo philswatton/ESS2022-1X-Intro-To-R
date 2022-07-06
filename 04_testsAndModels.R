@@ -41,11 +41,11 @@ t.test(avocado$AveragePrice) # by default a two-tailed t-test with null value = 
 
 # We can also test to see whether the avocado price is the same as other values,
 # like the median price of a house in the US:
-t.test(avocado$AveragePrice, mu = 269039) #sets the null to 269039, which according to a brief google is the median house price in the US
+t.test(avocado$AveragePrice, mu = 374900) #sets the null to 374900, which according to a brief google is the median house price in the US - https://www.fool.com/the-ascent/research/average-house-price-state/#:~:text=Key%20findings,416%25%20from%201980%20to%202020.
 
 # We can perform one-sided tests:
-t.test(avocado$AveragePrice, mu = 269039, alternative = "less")
-t.test(avocado$AveragePrice, mu = 269039, alternative = "greater")
+t.test(avocado$AveragePrice, mu = 374900, alternative = "less")
+t.test(avocado$AveragePrice, mu = 374900, alternative = "greater")
 
 # We can also perform difference in means tests. We may for instance want
 # to test to see whether conventional and organic avocados have the same mean
@@ -107,7 +107,7 @@ summary(result2)
 # a factor variable. Obviously, factors are too!
 
 # For those who use STATA, this differs a lot from what you're used to - declaring
-# variables as factors in the model. In R, the data type of your variables mattrs
+# variables as factors in the model. In R, the data type of your variables matters
 # much more.
 
 
@@ -216,18 +216,27 @@ probit <- glm(glmModel, aoe, family = binomial(link = "probit"))
 # Summary() and screenreg() work just as well here too:
 screenreg(list(logit, probit))
 
-# That's all for today folks!
-
 
 
 
 # 3 R like Stata ----
+
+# A question that arised last year is how to treat R like Stata
+# - i.e. without having to use the name of the dataframe. You
+# can use attach() and detch() to do this:
 
 attach(books)
 
 Price / 1000
 
 detach(books)
+
+# In general though, I'd recommend avoiding this style of syntax
+
+
+
+
+# That's all for today folks!
 
 
 

@@ -82,11 +82,13 @@ prop.table(table(aoe$civ)) # note that prop.table takes a table as input
 
 
 ## 1.2 Covariance and correlation matrices ----
-ches %>% 
+ches |> 
+  filter(country == 11) |>
   select(lrecon, eu_position, galtan) |>
   cor()
 
-ches %>% 
+ches |>
+  filter(country == 11) |>
   select(lrecon, eu_position, galtan) |>
   cov()
 
@@ -95,7 +97,7 @@ ches %>%
 
 # if you have missing data, you want to set the argument use="complete.obs" to
 # filter for missing data via casewise deletion:
-ches %>% 
+ches |>
   select(lrecon, eu_position, galtan) |>
   cor(use="complete.obs")
 
@@ -114,8 +116,8 @@ describeBy(aoe$rating, aoe$team)
 # stats are probably meaningless!
 
 # to select only numeric variables with dplyr:
-aoe %>% 
-  select_if(is.numeric) %>% #this is one case where you don't want to include the parantheses for the is.numeric function
+aoe |>
+  select_if(is.numeric) |> #this is one case where you don't want to include the parantheses for the is.numeric function
   describe()
 
 # we might want to combine filtering from file 02 with these functions:
@@ -133,14 +135,14 @@ class(test)
 # From the codebook, the codes for these countries are 11, 3, and 6 respectively.
 
 # We could do this:
-ches %>%
-  filter(country == 11 | country == 3 | country == 6) %>%
+ches |>
+  filter(country == 11 | country == 3 | country == 6) |>
   select(country, lrecon, eu_position) %>%
   describeBy(., .$country) #if you want to pipe into more than one slot or a slot other than the first, use the full stop - this is specific to %>%
 
 # But the %in% operator can be VERY useful for larger OR expressions:
-ches %>%
-  filter(country %in% c(3,6,11)) %>%
+ches |>
+  filter(country %in% c(3,6,11)) |>
   select(country, lrecon, eu_position) %>%
   describeBy(., .$country)
 
@@ -244,8 +246,8 @@ ggplot(ches, aes(x = eu_position)) +
 # With more details:
 ggplot(ches, aes(x = eu_position)) + 
   geom_histogram(binwidth = 1, fill="purple4", alpha=0.8, colour="black") +
-  scale_y_continuous(breaks = seq(0,100,20), limits=c(0,100), expand=c(0,0)) +
-  scale_x_continuous(breaks=seq(0,10,2), limits=c(0,10), expand=c(0,0)) +
+  scale_y_continuous(breaks = seq(0,500,50), limits=c(0,500), expand=c(0,0)) +
+  scale_x_continuous(breaks=seq(1,7,1), limits=c(0.5,7.5), expand=c(0,0)) +
   labs(x = "EU Position", y = "Count", title = "CHES Party EU Positions") +
   theme_classic()
 
@@ -277,7 +279,7 @@ ggplot(ches, aes(x = lrecon)) +
 # the relationship between how left-wing a party is and its EU position. Let's
 # focus on the case of the UK to begin with:
 
-chesUK <- ches |> filter(country == 11)
+chesUK <- ches |> filter(country == 11 & year == 2019)
 
 # To make a scatter plot in base R:
 plot(x = chesUK$lrecon, y = chesUK$eu_position,
@@ -314,7 +316,7 @@ ggplot(chesUK, aes(x=lrecon, y=eu_position)) +
 ggplot(chesUK, aes(x=lrecon, y=eu_position, fill=party)) +
   geom_point(shape=21, colour="black", size=3) +
   scale_x_continuous(limits = c(0,10), breaks=seq(0,10,2)) +
-  scale_y_continuous(limits = c(0,10), breaks=seq(0,10,2)) +
+  scale_y_continuous(limits = c(1,7), breaks=seq(1,7,2)) +
   scale_fill_manual(values = c("Cyan3","Blue4","Green","Red","Orange","Chartreuse4","Yellow","Purple")) +
   geom_vline(xintercept=mean(chesUK$lrecon), colour="red", size=1) + # this adds the vertical line
   geom_smooth(aes(group=1), method=lm, fullrange=T, show.legend=F, se=F) + # this adds the regression line
