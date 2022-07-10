@@ -13,7 +13,7 @@ describe(ches$redistribution)
 describeBy(ches[ches$country == 3,]$redistribution, group=ches[ches$country == 3,]$party)
 
 # Tidyverse:
-ches %>%
+ches |>
   filter(country == 3) |>
   select(redistribution, party) %>%
   describeBy(., .$party)
@@ -32,6 +32,7 @@ boxplot(simpsons$imdb_rating)
 # 4) Make a scatter plot of IMDB ratings and season. Store the plot in an object.
 myPlot <- ggplot(simpsons, aes(x=season, y=imdb_rating)) +
   geom_point()
+myPlot
 
 
 # 5) Add a theme and a regression line to the object you just made - so if your

@@ -12,7 +12,7 @@ str(simpsons)
 # try to do this using both base R and the tidyverse.
 ifelse(simpsons$imdb_rating > 8, 1, 0)
 case_when(simpsons$imdb_rating > 8 ~ 1,
-          simpsons$imfb_rating <= 8 ~ 0)
+          simpsons$imdb_rating <= 8 ~ 0)
 
 
 # 3) Filter for the first ten season and select, IMDB ratings, episode id, season

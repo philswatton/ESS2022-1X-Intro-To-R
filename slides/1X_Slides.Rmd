@@ -79,6 +79,17 @@ I'm not necessarily expecting you to finish the exercises today - it's okay if y
 
 
 
+# Worth doing:
+
+- On Windows, install Rtools for R 4.2 [here](https://cran.r-project.org/bin/windows/Rtools/rtools42/rtools.html)
+- On Mac, install xcode:
+  - [Command line](https://clanfear.github.io/CSSS508/docs/compiling.html)
+  - [App store](https://apps.apple.com/us/app/xcode/id497799835?mt=12)
+- In both cases, these will help with package installation
+
+
+
+
 # R package reccomendations 1
 
 \begin{center}

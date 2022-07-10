@@ -1,8 +1,7 @@
 # Essex Summer School in Social Science Data Analysis
-# 2X Introduction to R
+# 1X Introduction to R
 # Phil Swatton
-# Modified from 1X Introduction to R files by Lorenzo Crippa
-# Sunday 25th July 2021, 11am-5pm BST
+# Sunday 7th July 2022, 11am-5pm BST
 # File 04: statistical tests, OLS, generalised linear models
 
 
@@ -186,7 +185,7 @@ summary(result2)$coefficients[,4] # P-values of the coefficients
 
 # Finally
 prediction <- as.data.frame(predict(result1, interval = "confidence"))
-?predict
+?predict.lm
 
 
 

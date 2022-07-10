@@ -1,8 +1,7 @@
 # Essex Summer School in Social Science Data Analysis
-# 2X Introduction to R
+# 1X Introduction to R
 # Phil Swatton
-# Modified from 1X Introduction to R files by Lorenzo Crippa
-# Sunday 25th July 2021, 11am-5pm BST
+# Sunday 7th July 2022, 11am-5pm BST
 # File 02: importing data sets, R packages, managing data with the tidyverse
 
 
@@ -314,7 +313,7 @@ case_when(aoe$rating > 2000 ~ 2,
           !is.na(aoe$rating) ~ 0) #notice we need to be clever about dealing with missing values here
 
 # we can mix it with mutate() to make it even easier to read and write:
-aoe %>%
+aoe |>
   mutate(test = case_when(rating > 2000 ~ 2,
                           rating > 1000 ~ 1,
                           !is.na(rating) ~ 0))
