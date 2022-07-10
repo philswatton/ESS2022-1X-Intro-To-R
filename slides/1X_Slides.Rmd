@@ -79,32 +79,58 @@ I'm not necessarily expecting you to finish the exercises today - it's okay if y
 
 
 
-# Some R package reccomendations
-
+# R package reccomendations 1
 
 \begin{center}
 \resizebox{10cm}{!}{
 \begin{tabular}{lll}
 \textbf{Type} 		& \textbf{Package name} 	& \textbf{Aim} \\
-Data import			& \texttt{haven} 	& Similar to \texttt{foreign}\\
+\hline
+Data import			& \texttt{haven} 	& Similar to \texttt{foreign}, built for the \texttt{tidyverse}\\
 					& \texttt{readr}	& For reading in rectangular data files (e.g. CSV), part of the \texttt{tidyverse} \\
 \hline
 Data cleaning 		& \texttt{tidyr} 	& Tidy datasets incl. reshaping to long and wide, part of the \texttt{tidyverse} \\
 \hline
 Plots 				& \texttt{ggpubr} 	& \texttt{ggplot2}-based publication-ready plots \\
+					& \texttt{dotwhisker} & Easy coefficient plots in ggplot2 \\
 \hline
 Standard errors		& \texttt{sandwich} + \texttt{lmtest}  & Robust and clustered standard errors + test coefficients \\
 \hline
 Modelling			& \texttt{plm} 		& Panel data models (within-between estimator) \\
-					& \texttt{margins} or \texttt{ggeffects}& Marginal effects from models \\
-					& \texttt{AER} 		& Various (Instrumental variable, tobit models) \\ 
-					& \texttt{mlogit} or \texttt{mnlogit}	& Multinomial logit models \\
-					& \texttt{lme4} 	& Multilevel models \\
-					& \texttt{rdd} 		& Regression discontinuity design \\
 					& \texttt{zoo} or \texttt{forecast} & Time series tools \\
+					& \texttt{lme4} 	& Multilevel models \\
+					& \texttt{margins} or \texttt{ggeffects}& Marginal effects from models \\
+					& \texttt{MASS} 	& Ordered logit models \\
+					& \texttt{mlogit} or \texttt{mnlogit}	& Multinomial logit models \\
+					& \texttt{AER} 		& Various (Instrumental variable, tobit models) \\ 
+					& \texttt{rdd} 		& Regression discontinuity design \\
+\end{tabular}
+}
+\end{center}
+
+
+
+# R package reccomendations 2
+\begin{center}
+\resizebox{10cm}{!}{
+\begin{tabular}{lll}
+\textbf{Type} 		& \textbf{Package name} 	& \textbf{Aim} \\
+\hline
+Bayesian    & \texttt{rstan} or \texttt{rstanarm}    & Bayesian models via STAN \\
+					& \texttt{rjags}   & Bayesian models via JAGS \\
+					& \texttt{brms}   & Bayesian multilevel models via STAN with lme4 syntax \\
 \hline
 Latent Variable     & \texttt{psych}    & Exploratory Factor Analysis \\
 					& \texttt{lavaan}   & CFA/SEM \\
+					& \texttt{mirt}   & Item Response Theory \\
+					& \texttt{mclust}   & Mixture modelling \\
+\hline
+Machine Learning    & \texttt{caret}    & Streamline the modelling process \\
+					& \texttt{glmnet}    & lasso, ridge, elastic net regression \\
+					& \texttt{rpart}, \texttt{randomforest}   & Regression trees, random forests \\
+					& \texttt{e1071}   & Several misc functions including support vector machine \\
+					& \texttt{neuralnet}   & Neural networks \\
+					& \texttt{keras}   & R interface to Python `keras' library \\
 \hline
 Webscraping			& \texttt{rvest}    & Webscraping \\
 					& \texttt{httr}     & Webscraping, APIs \\
@@ -114,7 +140,6 @@ Text Analysis       & \texttt{quanteda}  & Quantitative text analysis \\
 \end{tabular}
 }
 \end{center}
-
 
 
 # Questions before we finish?
